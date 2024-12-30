@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 
 # 設定串口參數
-serial_port = 'COM11'  # 根據需要設置 COM 埠
+serial_port = 'COM11'  # USB_SERIAL CH341A >> Slaver
 baud_rate = 9600
 bytesize = 8
 parity = 'N'
