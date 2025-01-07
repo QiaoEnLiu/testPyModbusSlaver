@@ -1,8 +1,12 @@
-import asyncio, logging, serial
-from pymodbus.server.async_io import ModbusSerialServer
+import asyncio, logging
+# from pymodbus.server.async_io import ModbusSerialServer
+from pymodbus.server import ModbusSerialServer
+
 from pymodbus.datastore import ModbusSlaveContext, ModbusSequentialDataBlock, ModbusServerContext
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.framer import ModbusRtuFramer
+
+
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -71,4 +75,9 @@ async def start_server():
 # 手動啟動事件循環
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()  # 取得事件循環
-    loop.run_until_complete(start_server())  # 啟動伺服器
+    try:
+        loop.run_until_complete(start_server())
+    except KeyboardInterrupt:
+        logger.info("Server stopped by user")
+    finally:
+        loop.close()
